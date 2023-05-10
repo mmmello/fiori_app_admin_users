@@ -1,7 +1,7 @@
 {
   "_version": "1.42.0",
   "sap.app": {
-    "id": "br.com.gestao.fioriappadmin",
+    "id": "br.com.gestao.fioriappadminusers",
     "type": "application",
     "i18n": "i18n/i18n.properties",
     "applicationVersion": {
@@ -17,7 +17,7 @@
     },
     "dataSources": {
       "mainService": {
-        "uri": "/sap/opu/odata/sap/ZSB_PRODUCAO_13/",
+        "uri": "/sap/opu/odata/sap/ZUSERS_13_SRV/",
         "type": "OData",
         "settings": {
           "annotations": [],
@@ -75,7 +75,7 @@
       "i18n": {
         "type": "sap.ui.model.resource.ResourceModel",
         "settings": {
-          "bundleName": "br.com.gestao.fioriappadmin.i18n.i18n"
+          "bundleName": "br.com.gestao.fioriappadminusers.i18n.i18n"
         }
       },
       "": {
@@ -101,7 +101,7 @@
         "routerClass": "sap.m.routing.Router",
         "viewType": "XML",
         "async": true,
-        "viewPath": "br.com.gestao.fioriappadmin.view",
+        "viewPath": "br.com.gestao.fioriappadminusers.view",
         "controlAggregation": "pages",
         "controlId": "appID",
         "clearControlAggregation": false,
@@ -169,7 +169,7 @@
       }
     },
     "rootView": {
-      "viewName": "br.com.gestao.fioriappadmin.view.App",
+      "viewName": "br.com.gestao.fioriappadminusers.view.App",
       "type": "XML",
       "async": true,
       "id": "App"

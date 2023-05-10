@@ -5,11 +5,11 @@ sap.ui.define([
     "sap/m/MessageBox",
     "sap/m/MessageToast",
     "sap/ui/core/UIComponent",
-    "br/com/gestao/fioriappadmin/util/Formatter",
+    "br/com/gestao/fioriappadminusers/util/Formatter",
     "sap/ui/core/Fragment",
     "sap/ui/core/ValueState",
     "sap/ui/model/json/JSONModel",
-    "br/com/gestao/fioriappadmin/util/Validator",
+    "br/com/gestao/fioriappadminusers/util/Validator",
     "sap/m/BusyDialog",
     "sap/ui/model/odata/ODataModel",
     "sap/ui/core/ListItem"
@@ -33,7 +33,7 @@ sap.ui.define([
         ListItem) {
         "use strict";
 
-        return Controller.extend("br.com.gestao.fioriappadmin.controller.Lista", {
+        return Controller.extend("br.com.gestao.fioriappadminusers.controller.Lista", {
 
             objFormatter: Formatter,
 
@@ -52,29 +52,36 @@ sap.ui.define([
 
             criarModel: function () {
                 // Model produto
-                if(!this.getView().getModel("MDL_Produto")){
+                if(!this.getView().getModel("MDL_Usuario")){
                     var oModel = new JSONModel();
-                    this.getView().setModel(oModel, "MDL_Produto");
+                    this.getView().setModel(oModel, "MDL_Usuario");
                 }
             },
 
             onSearch: function (oEvent) {
 
-                let oProdutoIdInput = this.getView().byId("productID");
-                let oProdutoNomeInput = this.getView().byId("productName");
-                let oProdutoCategInput = this.getView().byId("productCategoryInput");
+                let oUserIdInput = this.getView().byId("userID");
+                let oUserNomeInput = this.getView().byId("userName");
+                let oUserCategInput = this.getView().byId("emailInput");
 
-                let oFilter = new Filter({
-                    filters: [
-                        new Filter("Productid", FilterOperator.Contains, oProdutoIdInput.getValue()),
-                        new Filter("Name", FilterOperator.Contains, oProdutoNomeInput.getValue()),
-                        new Filter("Category", FilterOperator.Contains, oProdutoCategInput.getValue())
-                    ],
-                    and: true
-                });
+                var objFilter = {filters: [], and: true};
+
+                if(oUserIdInput.getValue()){
+                    objFilter.filters.push(new Filter("Userid", FilterOperator.Contains, oUserIdInput.getValue()));
+                }
+
+                if(oUserNomeInput.getValue()){
+                    objFilter.filters.push(new Filter("Firstname", FilterOperator.Contains, oUserNomeInput.getValue()));
+                }
+
+                if(oUserCategInput.getValue()){
+                    objFilter.filters.push(new Filter("Email", FilterOperator.Contains, oUserCategInput.getValue()));
+                }
+
+                var oFilter = new Filter(objFilter);
 
                 // Criação do objeto List e acesso a agregação Items onde sabemos qual a entidade onde será aplicado o filtro
-                let oTable = this.getView().byId("tableProdutos");
+                let oTable = this.getView().byId("tableUsers");
                 let binding = oTable.getBinding("items");
 
                 // Aplicando o filtro para o Databinding
@@ -114,32 +121,7 @@ sap.ui.define([
                 oRoute.navTo("Detalhes", { productId: oProductId });
             },
 
-            onCategoria: function (oEvent) {
-                this._oInput = oEvent.getSource().getId();
-                var oView = this.getView();
-
-                // Verifico se o objeto fragment existe. Se não crio e adiciono na View
-                if (!this._CategoriaSearchHelp) {
-                    this._CategoriaSearchHelp = Fragment.load({
-                        id: oView.getId(),
-                        name: "br.com.gestao.fioriappadmin.frags.SH_Categorias",
-                        controller: this
-                    }).then(function (oDialog) {
-                        oView.addDependent(oDialog);
-                        return oDialog;
-                    });
-                }
-
-                this._CategoriaSearchHelp.then(function (oDialog) {
-                    // Limpando o filtro na abertura do fragment de categorias
-                    oDialog.getBinding("items").filter([]);
-
-                    // Abertura do fragment
-                    oDialog.open();
-                });
-            },
-
-            onNovoProduto: function (oEvent) {
+            onNovoUsuario: function (oEvent) {
 
                 this.criarModel();
 
@@ -147,10 +129,10 @@ sap.ui.define([
                 var that = this;
 
                 // Verifico se o objeto fragment existe. Se não crio e adiciono na View
-                if (!this._Produto) {
-                    this._Produto = Fragment.load({
+                if (!this._Usuario) {
+                    this._Usuario = Fragment.load({
                         id: oView.getId(),
-                        name: "br.com.gestao.fioriappadmin.frags.Inserir",
+                        name: "br.com.gestao.fioriappadminusers.frags.Inserir",
                         controller: this
                     }).then(function (oDialog) {
                         oView.addDependent(oDialog);
@@ -158,17 +140,13 @@ sap.ui.define([
                     });
                 }
 
-                this._Produto.then(function (oDialog) {
+                this._Usuario.then(function (oDialog) {
                     // Abertura do fragment
                     oDialog.open();
 
                     // Chamada da função para carregar os usuários
                     that.onGetUsuarios();
-                    that.getReadOpcoes();
-
-                    // Carrega data atual
-                    oView.getModel("MDL_Produto").getData().Createdat = new Date().toLocaleDateString();
-                    oView.getModel("MDL_Produto").refresh(true);
+                    //that.getReadOpcoes();
                 });
             },
 
@@ -284,7 +262,7 @@ sap.ui.define([
                 var sElement = "/Fornecedores('" + oValue + "')";
 
                 var oModel = this.getView().getModel();
-                var oModelProduto = this.getView().getModel("MDL_Produto");
+                var oModelProduto = this.getView().getModel("MDL_Usuario");
                 var oModelSend = new ODataModel(oModel.sServiceUrl, true);
 
                 oModelSend.read(sElement, {
@@ -323,7 +301,7 @@ sap.ui.define([
             onInsert: function () {
 
                 //  1 - Criando referência do Model
-                var oModel = this.getView().getModel("MDL_Produto");
+                var oModel = this.getView().getModel("MDL_Usuario");
                 var objNovo = oModel.getData();
 
                 //  2 - Manipulando propriedades
@@ -364,7 +342,7 @@ sap.ui.define([
                                 function (d, r) {
                                     if (r.statusCode === 201) {
                                         // Limpando os models
-                                        that.getView().setModel(null, "MDL_Produto");
+                                        that.getView().setModel(null, "MDL_Usuario");
                                         that.getView().setModel(null, "MDL_Users");
 
                                         MessageToast.show(bundle.getText("insertDialogSuccess", [objNovo.Productid]), {
@@ -412,7 +390,7 @@ sap.ui.define([
 
             // Também funciona para fechar o lightbox
             dialogClose: function () {
-                this._Produto.then(function (oDialog) {
+                this._Usuario.then(function (oDialog) {
                     // Abertura do fragment
                     oDialog.close();
                 });

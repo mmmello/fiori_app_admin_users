@@ -5,12 +5,12 @@
 sap.ui.define([
         "sap/ui/core/UIComponent",
         "sap/ui/Device",
-        "br/com/gestao/fioriappadmin/model/models"
+        "br/com/gestao/fioriappadminusers/model/models"
     ],
     function (UIComponent, Device, models) {
         "use strict";
 
-        return UIComponent.extend("br.com.gestao.fioriappadmin.Component", {
+        return UIComponent.extend("br.com.gestao.fioriappadminusers.Component", {
             metadata: {
                 manifest: "json"
             },

@@ -1,13 +1,13 @@
 sap.ui.define([
     "sap/ui/core/mvc/Controller",
     "sap/ui/core/format/NumberFormat",
-    "br/com/gestao/fioriappadmin/util/Formatter",
+    "br/com/gestao/fioriappadminusers/util/Formatter",
     "sap/ui/core/Fragment",
     "sap/ui/model/json/JSONModel",
     "sap/m/MessageToast",
     "sap/ui/model/Filter",
     "sap/ui/model/FilterOperator",
-    "br/com/gestao/fioriappadmin/util/Validator",
+    "br/com/gestao/fioriappadminusers/util/Validator",
     "sap/ui/core/ValueState",
     "sap/ui/model/odata/ODataModel",
     "sap/m/MessageBox",
@@ -21,7 +21,7 @@ sap.ui.define([
     function (Controller, NumberFormat, Formatter, Fragment, JSONModel, MessageToast, Filter, FilterOperator, Validator, ValueState, ODataModel, MessageBox, BusyDialog, UIComponent, History) {
         "use strict";
 
-        return Controller.extend("br.com.gestao.fioriappadmin.controller.Detalhes", {
+        return Controller.extend("br.com.gestao.fioriappadminusers.controller.Detalhes", {
 
             objFormatter: Formatter,
 
@@ -68,7 +68,7 @@ sap.ui.define([
                 if (!oFormFragment) {
                     oFormFragment = Fragment.load({
                         id: oView.getId(),
-                        name: "br.com.gestao.fioriappadmin.frags." + sFragmentName,
+                        name: "br.com.gestao.fioriappadminusers.frags." + sFragmentName,
                         controller: this
                     });
 
@@ -210,7 +210,7 @@ sap.ui.define([
                 if (!this._CategoriaSearchHelp) {
                     this._CategoriaSearchHelp = Fragment.load({
                         id: oView.getId(),
-                        name: "br.com.gestao.fioriappadmin.frags.SH_Categorias",
+                        name: "br.com.gestao.fioriappadminusers.frags.SH_Categorias",
                         controller: this
                     }).then(function (oDialog) {
                         oView.addDependent(oDialog);

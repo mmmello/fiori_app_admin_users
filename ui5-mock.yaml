@@ -2,7 +2,7 @@
 
 specVersion: "2.5"
 metadata:
-  name: br.com.gestao.fioriappadmin
+  name: br.com.gestao.fioriappadminusers
 type: application
 server:
   customMiddleware:
@@ -31,7 +31,7 @@ server:
       configuration:
         mountPath: /
         services:
-          - urlPath: /sap/opu/odata/sap/ZSB_PRODUCAO_13
+          - urlPath: /sap/opu/odata/sap/ZUSERS_13_SRV
             metadataPath: ./webapp/localService/metadata.xml
             mockdataPath: ./webapp/localService/data
             generateMockData: true
