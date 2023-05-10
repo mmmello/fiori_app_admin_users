@@ -1,0 +1,157 @@
+[
+  {
+    "Productid": "HT-1000",
+    "Name": "Notebook 15 polegadas",
+    "Description": "Notebook Basic with 2,80 GHz quad core, 15\" LCD, 4 GB DDR3 RAM",
+    "Category": "Notebooks",
+    "Supplierid": "856497",
+    "Measureunit": "CM",
+    "Weightmeasure": 9.85,
+    "Weightunit": "W 1",
+    "Price": 416.31,
+    "Currencycode": "Cur 1",
+    "Width": 6671.92,
+    "Depth": 2613.6,
+    "Height": 7960.43,
+    "Dimunit": "D 1",
+    "Createdat": "/Date(967838184000)/",
+    "Changedat": "/Date(1114286184000)/",
+    "Status": "E",
+    "Usercreate": "Usercreate 1",
+    "Userupdate": "Userupdate 1",
+    "Suppliername": "Suppliername 1",
+    "__metadata": {
+      "uri": "/Produtos('HT-1000')",
+      "type": "cds_zsd_producao_13.ProdutosType"
+    },
+    "to_cat": {
+      "__deferred": {
+        "uri": "/Produtos('HT-1000')/to_cat"
+      }
+    }
+  },
+  {
+    "Productid": "HT-1020",
+    "Name": "Smart TV",
+    "Description": "Smart TV 50” Crystal 4K Samsung 50AU7700 - Wi-Fi Bluetooth HDR",
+    "Category": "Televisores",
+    "Supplierid": "643125",
+    "Measureunit": "M 2",
+    "Weightmeasure": 2584.86,
+    "Weightunit": "W 2",
+    "Price": 5101.49,
+    "Currencycode": "Cur 2",
+    "Width": 7638.68,
+    "Depth": 100.85,
+    "Height": 8688.55,
+    "Dimunit": "D 2",
+    "Createdat": "/Date(1264186584000)/",
+    "Changedat": "/Date(1509216984000)/",
+    "Status": "P",
+    "Usercreate": "Usercreate 2",
+    "Userupdate": "Userupdate 2",
+    "Suppliername": "Suppliername 2",
+    "__metadata": {
+      "uri": "/Produtos('HT-1020')",
+      "type": "cds_zsd_producao_13.ProdutosType"
+    },
+    "to_cat": {
+      "__deferred": {
+        "uri": "/Produtos('HT-1020')/to_cat"
+      }
+    }
+  },
+  {
+    "Productid": "HT-1030",
+    "Name": "Smartphone Qbex",
+    "Description": "Smartphone Qbex S008 Desbloqueado Android 4.4 Tela 5\" 16GB 3G 8MP",
+    "Category": "Celulares",
+    "Supplierid": "312548",
+    "Measureunit": "M 3",
+    "Weightmeasure": 9523.1,
+    "Weightunit": "W 3",
+    "Price": 8078.05,
+    "Currencycode": "Cur 3",
+    "Width": 3324.62,
+    "Depth": 591.67,
+    "Height": 4853.71,
+    "Dimunit": "D 3",
+    "Createdat": "/Date(1149191784000)/",
+    "Changedat": "/Date(1224701784000)/",
+    "Status": "F",
+    "Usercreate": "Usercreate 3",
+    "Userupdate": "Userupdate 3",
+    "Suppliername": "Suppliername 3",
+    "__metadata": {
+      "uri": "/Produtos('HT-1030')",
+      "type": "cds_zsd_producao_13.ProdutosType"
+    },
+    "to_cat": {
+      "__deferred": {
+        "uri": "/Produtos('HT-1030')/to_cat"
+      }
+    }
+  },
+  {
+    "Productid": "HT-1040",
+    "Name": "Moto X4",
+    "Description": "Moto x4 preto 4 GB RAM",
+    "Category": "Celulares",
+    "Supplierid": "031254",
+    "Measureunit": "M 4",
+    "Weightmeasure": 4053.58,
+    "Weightunit": "W 4",
+    "Price": 7495.46,
+    "Currencycode": "Cur 4",
+    "Width": 7826.71,
+    "Depth": 3812,
+    "Height": 6152.62,
+    "Dimunit": "D 4",
+    "Createdat": "/Date(1190145384000)/",
+    "Changedat": "/Date(1157745384000)/",
+    "Status": "E",
+    "Usercreate": "Usercreate 4",
+    "Userupdate": "Userupdate 4",
+    "Suppliername": "Suppliername 4",
+    "__metadata": {
+      "uri": "/Produtos('HT-1040')",
+      "type": "cds_zsd_producao_13.ProdutosType"
+    },
+    "to_cat": {
+      "__deferred": {
+        "uri": "/Produtos('HT-1040')/to_cat"
+      }
+    }
+  },
+  {
+    "Productid": "HT-1050",
+    "Name": "Moto Edge 20",
+    "Description": "Smartphone Motorola Edge 20 Lite 128GB 5G Wi-Fi Tela 6.7\" - Verde",
+    "Category": "Celulares",
+    "Supplierid": "631254",
+    "Measureunit": "M 5",
+    "Weightmeasure": 7116.64,
+    "Weightunit": "W 5",
+    "Price": 3189.11,
+    "Currencycode": "Cur 5",
+    "Width": 2884.41,
+    "Depth": 6673.2,
+    "Height": 3050.52,
+    "Dimunit": "D 5",
+    "Createdat": "/Date(1139252184000)/",
+    "Changedat": "/Date(1405367784000)/",
+    "Status": "P",
+    "Usercreate": "Usercreate 5",
+    "Userupdate": "Userupdate 5",
+    "Suppliername": "Suppliername 5",
+    "__metadata": {
+      "uri": "/Produtos('HT-1050')",
+      "type": "cds_zsd_producao_13.ProdutosType"
+    },
+    "to_cat": {
+      "__deferred": {
+        "uri": "/Produtos('HT-1050')/to_cat"
+      }
+    }
+  }
+]

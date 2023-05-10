@@ -1,0 +1,3 @@
+<mvc:View id="_IDGenView1" height="100%" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m">
+    <MessagePage id="_IDGenMessagePage1" icon="sap-icon://alert" title="{i18n>nfTitle}" text="{i18n>nfText}" description="{i18n>nfDescription}" />
+</mvc:View>

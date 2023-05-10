@@ -1,0 +1,42 @@
+[
+    {
+      "Category": "Notebooks",
+      "Description": "Notebooks e computadores",
+      "__metadata": {
+        "uri": "/Categorias('1')",
+        "type": "cds_zsd_producao_13.CategoriasType"
+      }
+    },
+    {
+      "Category": "Televisores",
+      "Description": "Televisores e Smart TV's",
+      "__metadata": {
+        "uri": "/Categorias('2')",
+        "type": "cds_zsd_producao_13.CategoriasType"
+      }
+    },
+    {
+      "Category": "Celulares",
+      "Description": "Celulares e Smartphones",
+      "__metadata": {
+        "uri": "/Categorias('3')",
+        "type": "cds_zsd_producao_13.CategoriasType"
+      }
+    },
+    {
+      "Category": "Eletrodomesticos",
+      "Description": "Description 4",
+      "__metadata": {
+        "uri": "/Categorias('Ca%204')",
+        "type": "cds_zsd_producao_13.CategoriasType"
+      }
+    },
+    {
+      "Category": "Cama, mesa e banho",
+      "Description": "Description 5",
+      "__metadata": {
+        "uri": "/Categorias('Ca%205')",
+        "type": "cds_zsd_producao_13.CategoriasType"
+      }
+    }
+  ]
