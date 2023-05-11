@@ -7,27 +7,27 @@
 
                     <!-- Propriedade Usuário ID -->
                     <Label id="lblUserid" text="{i18n>sfUserid}" required="true" />
-                    <Input id="idInputUserid" width="65%" maxLength="6" value="{path: 'MDL_Usuario>/Userid', type: 'sap.ui.model.type.String', constraints: {minLength: 1, maxLength: 6}}" />
+                    <Input id="idInputUserid" placeholder="{i18n>sfInsertIdUser}" enabled="false" width="65%" maxLength="6" value="{path: 'MDL_Usuario>/Userid', type: 'sap.ui.model.type.String', constraints: {minLength: 1, maxLength: 6}}" />
 
 
 					<!-- Propriedade First name -->
                     <Label id="lblFirstname" text="{i18n>sfFirstName}" required="true" />
-                    <Input id="idInputFirstname" width="65%" maxLength="10" value="{path: 'MDL_Usuario>/Firstname', type: 'sap.ui.model.type.String', constraints: {minLength: 1, maxLength: 10}}" />
+                    <Input id="idInputFirstname" placeholder="{i18n>sfInsertFirstname}" liveChange="geraID" width="65%" maxLength="10" value="{path: 'MDL_Usuario>/Firstname', type: 'sap.ui.model.type.String', constraints: {minLength: 1, maxLength: 10}}" />
 
 
 					<!-- Propriedade Last name -->
                     <Label id="lblLastname" text="{i18n>sfLastName}" required="true" />
-                    <Input id="idInputLastname" width="65%" maxLength="40" value="{path: 'MDL_Usuario>/Lastname', type: 'sap.ui.model.type.String', constraints: {minLength: 1, maxLength: 40}}" />
+                    <Input id="idInputLastname" placeholder="{i18n>sfInsertLastname}" liveChange="geraID" width="65%" maxLength="40" value="{path: 'MDL_Usuario>/Lastname', type: 'sap.ui.model.type.String', constraints: {minLength: 1, maxLength: 40}}" />
 
 
 					<!-- Propriedade E-mail -->
                     <Label id="lblEmail" text="{i18n>sfEmail}" required="true" />
-                    <Input id="idInputEmail" width="65%" maxLength="40" value="{path: 'MDL_Usuario>/Email', type: 'sap.ui.model.type.String', constraints: {minLength: 1, maxLength: 40}}" />					
+                    <Input id="idInputEmail" placeholder="{i18n>sfInsertEmail}" width="65%" maxLength="40" value="{path: 'MDL_Usuario>/Email', type: 'sap.ui.model.type.String', constraints: {search: '^\\w+[\\w-+\\.]*\\@\\w+([-\\.]\\w+)*\\.[a-zA-Z]{2,}$', minLength: 1, maxLength: 40}}" />					
 
 
 					<!-- Propriedade Fone -->
                     <Label id="lblFone" text="{i18n>sfFone}" required="true" />
-                    <Input id="idInputFone" width="65%" maxLength="16" value="{path: 'MDL_Usuario>/Fone', type: 'sap.ui.model.type.String', constraints: {minLength: 1, maxLength: 16}}" />					
+                    <MaskInput id="idInputFone" placeholder="{i18n>sfInsertFone}" width="65%" mask="(99) 99999-9999" value="{path: 'MDL_Usuario>/Fone', type: 'sap.ui.model.type.String', constraints: {minLength: 1, maxLength: 16}}" />					
 
                 </sap.ui.layout.form:content>
             </sap.ui.layout.form:SimpleForm>

@@ -35,20 +35,16 @@ sap.ui.define([
                     oEvent.getParameter("element").setValueState(ValueState.Success);
                 });
 
-
                 var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 
                 // Esse método é chamado toda vez que um route acontece nessa página
                 // Neste caso, o Route está vindo da página Lista
-                oRouter.getRoute("Detalhes").attachMatched(this.onBindingProdutoDetalhes, this);
-
+                oRouter.getRoute("Detalhes").attachMatched(this.onBindingUsuarioDetalhes, this);
 
                 // 1 - Chamar a função onde irá fazer o carregamento dos fragments
                 this._formFragments = {};
 
                 this._showFormFragments("DisplayBasicInfo", "vboxViewBasicInfo");
-                this._showFormFragments("DisplayTechInfo", "vboxViewTechInfo");
-
             },
 
             // 2 - Recebe como parâmetro o nome dos fragments e o nome dos VBox's de destino
@@ -77,9 +73,9 @@ sap.ui.define([
                 return oFormFragment;
             },
 
-            onBindingProdutoDetalhes: function (oEvent) {
+            onBindingUsuarioDetalhes: function (oEvent) {
 
-                var oProduto = oEvent.getParameter("arguments").productId;
+                var _oUsuario = oEvent.getParameter("arguments").userid;
 
                 var oView = this.getView();
 
@@ -87,12 +83,10 @@ sap.ui.define([
                 this._bDelete = false;
 
                 // Criar a URL de chamada da nossa entidade de Produtos
-                var sURL = "/Produtos('" + oProduto + "')";
+                var sURL = "/UsersSet('" + _oUsuario + "')";
 
                 oView.bindElement({
                     path: sURL,
-                    parameters: { expand: 'to_cat,to_users' },
-
                     events: {
                         change: this.onBindingChange.bind(this),
                         dataRequested: function () {
@@ -120,7 +114,7 @@ sap.ui.define([
                         return;
                     }
                 } else {
-                    this._oProduto = Object.assign({}, oElementBinding.getBoundContext().getObject());
+                    this._oUsuario = Object.assign({}, oElementBinding.getBoundContext().getObject());
                 }
             },
 
@@ -131,7 +125,7 @@ sap.ui.define([
             criarModel: function () {
                 // Model produto
                 var oModel = new JSONModel();
-                this.getView().setModel(oModel, "MDL_Produto");
+                this.getView().setModel(oModel, "MDL_Usuario");
             },
 
             _HabilitaEdicao: function (bEdit) {
@@ -145,27 +139,13 @@ sap.ui.define([
 
                 // Habilitar/Desabilitar Abas (seções) das páginas
                 oView.byId("section1").setVisible(!bEdit);
-                oView.byId("section2").setVisible(!bEdit);
                 oView.byId("section3").setVisible(bEdit);
 
                 if (bEdit) {
-                    this._showFormFragments("Change", "vboxChangeProduct");
+                    this._showFormFragments("Change", "vboxChangeUser");
                 } else {
                     this._showFormFragments("DisplayBasicInfo", "vboxViewBasicInfo");
-                    this._showFormFragments("DisplayTechInfo", "vboxViewTechInfo");
                 }
-            },
-
-            handleLink1Press: function () {
-
-            },
-
-            handleLink2Press: function () {
-
-            },
-
-            toggleFooter: function () {
-
             },
 
             onNavBack: function (oEvent) {
@@ -178,7 +158,7 @@ sap.ui.define([
             onValida: function (oEvent) {
                 var validator = new Validator();
 
-                if (validator.validate(this.byId("vboxChangeProduct"))) {
+                if (validator.validate(this.byId("vboxChangeUser"))) {
                     this.onUpdate();
                 }
             },
@@ -196,97 +176,19 @@ sap.ui.define([
             handleEditPress: function (oEvent) {
                 this.criarModel();
 
-                var oModelProduto = this.getView().getModel("MDL_Produto");
-                oModelProduto.setData(this._oProduto);
+                var oModelUsuario = this.getView().getModel("MDL_Usuario");
+                oModelUsuario.setData(this._oUsuario);
 
                 this._HabilitaEdicao(true);
-            },
-
-            onCategoria: function (oEvent) {
-                this._oInput = oEvent.getSource().getId();
-                var oView = this.getView();
-
-                // Verifico se o objeto fragment existe. Se não crio e adiciono na View
-                if (!this._CategoriaSearchHelp) {
-                    this._CategoriaSearchHelp = Fragment.load({
-                        id: oView.getId(),
-                        name: "br.com.gestao.fioriappadminusers.frags.SH_Categorias",
-                        controller: this
-                    }).then(function (oDialog) {
-                        oView.addDependent(oDialog);
-                        return oDialog;
-                    });
-                }
-
-                this._CategoriaSearchHelp.then(function (oDialog) {
-                    // Limpando o filtro na abertura do fragment de categorias
-                    oDialog.getBinding("items").filter([]);
-
-                    // Abertura do fragment
-                    oDialog.open();
-                });
-            },
-
-            getSupplier: function (oEvent) {
-                debugger;
-                this._oInput = oEvent.getSource().getId();
-                var oValue = oEvent.getSource().getValue();
-                var sElement = "/Fornecedores('" + oValue + "')";
-
-                var oModel = this.getView().getModel();
-                var oModelProduto = this.getView().getModel("MDL_Produto");
-                var oModelSend = new ODataModel(oModel.sServiceUrl, true);
-
-                oModelSend.read(sElement, {
-                    success: function (oData, results) {
-                        if (results.statusCode === 200) {
-                            oModelProduto.setProperty("/Supplierid", oData.Lifnr);
-                            oModelProduto.setProperty("/Suppliername", oData.Name1);
-                        }
-                    },
-                    error: function (e) {
-                        oModelProduto.setProperty("/Supplierid", "");
-                        oModelProduto.setProperty("/Suppliername", "");
-
-                        var oRet = JSON.parse(e.responde.body);
-                        MessageToast.show(oRet.error.message.value, {
-                            duration: 5000
-                        });
-                    }
-                });
-
-            },
-
-            onSuggest: function (oEvent) {
-                debugger;
-                var sText = oEvent.getParameter("suggestValue");
-                var aFilters = [];
-
-                if (sText) {
-                    aFilters.push(new Filter("Lifnr", FilterOperator.Contains, sText));
-                }
-
-                oEvent.getSource().getBinding("suggestionItems").filter(aFilters);
             },
 
             onUpdate: function () {
 
                 //  1 - Criando referência do Model
-                var oModel = this.getView().getModel("MDL_Produto");
+                var oModel = this.getView().getModel("MDL_Usuario");
                 var objUpdate = oModel.getData();
                 var sPath = this.getView().getElementBinding().getPath();
 
-                //  2 - Manipulando propriedades
-
-                objUpdate.Price = objUpdate.Price.toString();
-                objUpdate.Weightmeasure = objUpdate.Weightmeasure.toString();
-                objUpdate.Width = objUpdate.Width.toString();
-                objUpdate.Depth = objUpdate.Depth.toString();
-                objUpdate.Height = objUpdate.Height.toString();
-                objUpdate.Changedat = new Date().toISOString().substring(0, 19);
-
-                delete objUpdate.to_cat;
-                delete objUpdate.to_users;
                 delete objUpdate.__metadata;
 
                 // 3 - Criando uma referência do arquivo i18n
@@ -294,10 +196,10 @@ sap.ui.define([
                 var that = this;
 
                 // 4 - Criar o objeto model rederência do model default (ODataModel)
-                var oModelProduto = this.getView().getModel();
+                var oModelUsuario = this.getView().getModel();
 
                 MessageBox.confirm(
-                    bundle.getText("updateDialogMsg", [objUpdate.Productid]),
+                    bundle.getText("updateDialogMsg", [objUpdate.userid]),
                     function (oAction) {
 
                         // Verificando se o usuário confirmou ou não a operação
@@ -310,7 +212,7 @@ sap.ui.define([
 
                             that._oBusyDialog.open();
 
-                            var oModelSend = new ODataModel(oModelProduto.sServiceUrl, true);
+                            var oModelSend = new ODataModel(oModelUsuario.sServiceUrl, true);
                             oModelSend.update(sPath, objUpdate, null,
                                 function (d, r) {
                                     if (r.statusCode === 204) {
@@ -325,11 +227,11 @@ sap.ui.define([
                                         that.getView().getModel().refresh();
 
                                         // Limpando o model de edição
-                                        that.getView().setModel(null, "MDL_Produto");
+                                        that.getView().setModel(null, "MDL_Usuario");
 
                                         // Mensagem de sucesso na tela
                                         MessageBox.success(
-                                            bundle.getText("updateDialogSuccess", [objUpdate.Productid]), {
+                                            bundle.getText("updateDialogSuccess", [objUpdate.Firstname + ' ' + objUpdate.Lastname]), {
                                             onClose: function (oAction) {
                                                 // Atualizando a tela
                                                 var sPreviousHash = History.getInstance().getPreviousHash();
@@ -359,7 +261,7 @@ sap.ui.define([
                 var sPath = this.getView().getElementBinding().getPath();
                 var bundle = this.getView().getModel("i18n").getResourceBundle();
                 var that = this;
-                var oModelProduto = this.getView().getModel();
+                var oModelUsuario = this.getView().getModel();
                 var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 
                 MessageBox.confirm(
@@ -376,7 +278,7 @@ sap.ui.define([
 
                             that._oBusyDialog.open();
 
-                            var oModelSend = new ODataModel(oModelProduto.sServiceUrl, true);
+                            var oModelSend = new ODataModel(oModelUsuario.sServiceUrl, true);
                             oModelSend.remove(sPath, {
                                 success: function (d, r) {
                                     if (r.statusCode === 204) {
@@ -389,7 +291,7 @@ sap.ui.define([
 
                                         // Mensagem de sucesso na tela
                                         MessageBox.success(
-                                            bundle.getText("deleteDialogSuccess", [objDelete.Productid]), {
+                                            bundle.getText("deleteDialogSuccess", [objDelete.Firstname + ' ' + objDelete.Lastname]), {
                                             actions: [MessageBox.Action.OK],
                                             onClose: function (oAction) {
                                                 // Atualizando a tela

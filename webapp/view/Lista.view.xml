@@ -43,7 +43,7 @@
                         <items>
                             <ColumnListItem press="onSelectedItem" type="Active" id="item0_1668791161370">
                                 <cells>
-                                    <sap.ui.core:Icon xmlns:sap.ui.core="sap.ui.core" src="sap-icon://product" size="3rem" id="icon0" />
+                                    <sap.ui.core:Icon xmlns:sap.ui.core="sap.ui.core" src="sap-icon://person-placeholder" size="3rem" id="icon0" />
                                     <Text xmlns="sap.m" text="{Userid}" id="text3" />
                                     <Text xmlns="sap.m" text="{Firstname} {Lastname}" id="text4" />
                                     <Text xmlns="sap.m" id="text5" text="{Email}" />

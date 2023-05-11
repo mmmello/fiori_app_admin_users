@@ -126,7 +126,7 @@
         },
         {
           "name": "Detalhes",
-          "pattern": "Detalhes/{productId}",
+          "pattern": "Detalhes/{userid}",
           "target": [
             "detalhes"
           ]
