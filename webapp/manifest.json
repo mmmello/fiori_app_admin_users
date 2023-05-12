@@ -130,6 +130,13 @@
           "target": [
             "detalhes"
           ]
+        },
+        {
+          "name": "objNotFound",
+          "pattern": "objNotFound",
+          "target": [
+            "objNotFound"
+          ]
         }
       ],
       "targets": {

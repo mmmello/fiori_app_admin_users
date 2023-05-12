@@ -101,6 +101,8 @@ sap.ui.define([
 
             onBindingChange: function (oEvent) {
 
+                debugger;
+
                 var oView = this.getView();
                 var oElementBinding = oView.getElementBinding();
 
