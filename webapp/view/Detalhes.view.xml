@@ -6,7 +6,6 @@
                 <expandedHeading>
                     <m:HBox id="_IDGenHBox1">
                         <m:Title id="_IDGenTitle1" text="{Userid}" wrapping="true" />
-                        <!-- <m:ObjectMarker id="_IDGenObjectMarker1" type="Favorite" class="sapUiTinyMarginBegin" /> -->
                     </m:HBox>
                 </expandedHeading>
                 <snappedHeading>
